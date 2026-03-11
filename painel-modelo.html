@@ -508,6 +508,7 @@
         }
 
         function atualizarPreview(tipo, base64) {
+            // Atualizar preview pequeno (lado esquerdo)
             const preview = document.getElementById(`preview-${tipo}`);
 
             if (tipo === 'perfil') {
@@ -515,11 +516,28 @@
                 preview.style.backgroundSize = 'cover';
                 preview.style.backgroundPosition = 'center';
                 preview.innerHTML = '';
+
+                // ATUALIZAR GRANDE PREVIEW (lado direito) - Foto de Perfil
+                const previewCirculo = document.querySelector('.preview-container .w-16.h-16.rounded-full');
+                if (previewCirculo) {
+                    previewCirculo.style.backgroundImage = `url(${base64})`;
+                    previewCirculo.style.backgroundSize = 'cover';
+                    previewCirculo.style.backgroundPosition = 'center';
+                    previewCirculo.style.background = '';
+                }
             } else if (tipo === 'fundo') {
                 preview.style.backgroundImage = `url(${base64})`;
                 preview.style.backgroundSize = 'cover';
                 preview.style.backgroundPosition = 'center';
                 preview.innerHTML = '';
+
+                // ATUALIZAR GRANDE PREVIEW (lado direito) - Fundo
+                const previewContainer = document.querySelector('.preview-container');
+                if (previewContainer) {
+                    previewContainer.style.backgroundImage = `url(${base64})`;
+                    previewContainer.style.backgroundSize = 'cover';
+                    previewContainer.style.backgroundPosition = 'center';
+                }
             }
         }
 
