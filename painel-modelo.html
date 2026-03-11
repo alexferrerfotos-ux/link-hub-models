@@ -263,7 +263,7 @@
                             <input type="text" id="chamada" value="Quer conversar comigo agora? Clique abaixo!" class="input-field w-full" placeholder="Sua chamada" />
                         </div>
 
-                        <button class="btn-primary w-full mt-6">✅ Salvar Alterações</button>
+                        <button class="btn-primary w-full mt-6" onclick="salvarBio()">✅ Salvar Alterações</button>
                     </div>
                 </div>
 
@@ -309,7 +309,7 @@
                         </div>
                     </div>
 
-                    <button class="btn-primary w-full mt-6">✅ Salvar Alterações</button>
+                    <button class="btn-primary w-full mt-6" onclick="salvarFotos()">✅ Salvar Alterações</button>
                 </div>
 
                 <!-- BOTÕES SECTION -->
@@ -418,7 +418,7 @@
                         </div>
                     </div>
 
-                    <button class="btn-primary w-full mt-6">✅ Salvar Alterações</button>
+                    <button class="btn-primary w-full mt-6" onclick="salvarRedes()">✅ Salvar Alterações</button>
                 </div>
 
             </div>
@@ -549,6 +549,40 @@
             if (fotoFundo) {
                 atualizarPreview('fundo', fotoFundo);
             }
+        }
+
+        // FUNÇÕES PARA SALVAR DADOS
+        function salvarBio() {
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            const cidade = document.getElementById('cidade').value;
+            const bio = document.getElementById('bio').value;
+            const descricao = document.getElementById('descricao').value;
+            const chamada = document.getElementById('chamada').value;
+
+            // Salvar no localStorage
+            localStorage.setItem('modelo-bio', JSON.stringify({
+                nome, idade, cidade, bio, descricao, chamada
+            }));
+
+            alert('✅ Bio salva com sucesso!');
+        }
+
+        function salvarFotos() {
+            alert('✅ Fotos salvas com sucesso!');
+        }
+
+        function salvarRedes() {
+            const instagram = document.querySelectorAll('.toggle-checkbox')[0]?.checked;
+            const tiktok = document.querySelectorAll('.toggle-checkbox')[1]?.checked;
+            const kwai = document.querySelectorAll('.toggle-checkbox')[2]?.checked;
+            const twitter = document.querySelectorAll('.toggle-checkbox')[3]?.checked;
+
+            localStorage.setItem('modelo-redes', JSON.stringify({
+                instagram, tiktok, kwai, twitter
+            }));
+
+            alert('✅ Redes sociais salvas com sucesso!');
         }
 
         // FUNÇÕES PARA GERENCIAR BOTÕES
