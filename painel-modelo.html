@@ -520,10 +520,14 @@
                 // ATUALIZAR GRANDE PREVIEW (lado direito) - Foto de Perfil
                 const previewCirculo = document.querySelector('.preview-container .w-16.h-16.rounded-full');
                 if (previewCirculo) {
+                    // Remover classes de gradiente Tailwind
+                    previewCirculo.classList.remove('bg-gradient-to-r', 'from-pink-400', 'to-purple-500');
+
+                    // Setar a foto como background
                     previewCirculo.style.backgroundImage = `url(${base64})`;
                     previewCirculo.style.backgroundSize = 'cover';
                     previewCirculo.style.backgroundPosition = 'center';
-                    previewCirculo.style.background = '';
+                    previewCirculo.style.backgroundRepeat = 'no-repeat';
                 }
             } else if (tipo === 'fundo') {
                 preview.style.backgroundImage = `url(${base64})`;
@@ -550,6 +554,13 @@
 
             if (tipo === 'perfil') {
                 preview.style.background = 'linear-gradient(135deg, #ec4899, #a855f7)';
+
+                // Remover foto do círculo na grande preview
+                const previewCirculo = document.querySelector('.preview-container .w-16.h-16.rounded-full');
+                if (previewCirculo) {
+                    previewCirculo.classList.add('bg-gradient-to-r', 'from-pink-400', 'to-purple-500');
+                    previewCirculo.style.backgroundImage = '';
+                }
             } else {
                 preview.style.background = 'linear-gradient(135deg, #0f172a, #1e293b)';
             }
